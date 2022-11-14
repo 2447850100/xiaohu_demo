@@ -29,8 +29,6 @@ public class MovingAverage {
 
     private static LinkedList<Integer> list;
 
-    double sum = 0;
-
     static LinkedList<Integer> queue = new LinkedList<>();
 
     /**
@@ -46,12 +44,13 @@ public class MovingAverage {
         list.addLast(val);
         queue.add(index);
 
+
         if (queue.peekFirst() == index - size) {
             queue.pollFirst();
         }
-        sum+=val;
+
         index++;
-        return sum/queue.size();
+        return queue.stream().collect(Collectors.averagingDouble(ele -> Double.parseDouble(String.valueOf(list.get(ele)))));
     }
 
 }
