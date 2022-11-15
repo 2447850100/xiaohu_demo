@@ -72,7 +72,7 @@ public class LruManager<K, V> {
 
     public V getOrDefault(K key, V defaultValue) {
 
-        int k = hash(key);
+        int k = Math.abs(hash(key));
         Node<K, V> v = cache.get(k);
         if (v == null) {
             return defaultValue;
